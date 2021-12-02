@@ -3,21 +3,12 @@ package ru.jat.innoteam.service;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequest;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.Response;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.GetIndexRequest;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.stereotype.Service;
 import ru.jat.innoteam.model.*;
 import ru.jat.innoteam.repository.ApplicationRepository;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -46,7 +37,6 @@ public class FakerService {
      */
     @EventListener(ApplicationReadyEvent.class)
     public void generateFakeData() {
-        log.info("count = " + applicationRepository.count());
         if (applicationRepository.count() == 0) {
             log.info("Наполним данными эластик");
             var applications = IntStream.range(1, 100).mapToObj(i -> getApplication((long) i)).collect(Collectors.toList());
