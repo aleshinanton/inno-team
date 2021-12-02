@@ -12,8 +12,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.stereotype.Service;
-import ru.jat.innoteam.model.Application;
-import ru.jat.innoteam.model.ReadinessStage;
+import ru.jat.innoteam.model.*;
 import ru.jat.innoteam.repository.ApplicationRepository;
 
 import java.io.IOException;
@@ -41,6 +40,10 @@ public class FakerService {
         return FAKER.team().name();
     }
 
+    /**
+     * Метод вызывается при старте приложения
+     * и заполняет данными эластик, если эластик пустой
+     */
     @EventListener(ApplicationReadyEvent.class)
     public void generateFakeData() {
         log.info("count = " + applicationRepository.count());
@@ -52,23 +55,33 @@ public class FakerService {
         }
     }
 
+    /**
+     * Метод для генерации фейковой заявки
+     * @param id идентификатор заявки
+     * @return
+     */
     public Application getApplication(Long id) {
         return Application.builder()
                 .id(id)
                 .teamName(FAKER.team().name())
+                .stage(ReadinessStage.values()[RANDOM.nextInt(ReadinessStage.values().length)])
                 .productDescription(FAKER.commerce().productName())
+                .productUseCases(FAKER.commerce().material())
                 .productBenefits(FAKER.commerce().price())
+                .organization(Organization.values()[RANDOM.nextInt(ReadinessStage.values().length)])
+                .acceleratorRequest("Запрос к акселератору и видение пилотного проекта " + FAKER.commerce().department())
+                .certificationRequirementStatus(CertificationRequirementStatus.values()[RANDOM.nextInt(CertificationRequirementStatus.values().length)])
+                .contactPersonFullName(FAKER.name().fullName())
+                .contantPersonPosition(FAKER.commerce().department())
                 .contactPhone(FAKER.phoneNumber().cellPhone())
                 .contactMail(FAKER.bothify("????###???@mail.ru"))
-                .stage(getReadinessStage())
                 .legalEntityInn(FAKER.number().digits(12))
-                .legalEntityName("ООО " + FAKER.team().name())
+                .legalEntityName(FAKER.company().name())
+                .peopleAmount(PeopleAmount.values()[RANDOM.nextInt(CertificationRequirementStatus.values().length)])
+                .site("www." + FAKER.app().name().toLowerCase() + ".ru")
+                .sourceOfInformation("СМИ")
+                .presentationUrl("http://link/company_project.ptpp")
                 .build();
-
-    }
-
-    public ReadinessStage getReadinessStage() {
-        return ReadinessStage.values()[RANDOM.nextInt(ReadinessStage.values().length)];
     }
 
 }
