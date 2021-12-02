@@ -111,4 +111,9 @@ public class Application {
      * Ссылка на презентацию
      */
     private String presentationUrl;
+
+    /**
+     * Паспорт проекта
+     */
+    private ProjectPassport projectPassport;
 }

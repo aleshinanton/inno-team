@@ -47,15 +47,17 @@ public class FakerService {
 
     /**
      * Метод для генерации фейковой заявки
+     *
      * @param id идентификатор заявки
      * @return
      */
     public Application getApplication(Long id) {
+        var productName = FAKER.commerce().productName();
         return Application.builder()
                 .id(id)
                 .teamName(FAKER.team().name())
                 .stage(ReadinessStage.values()[RANDOM.nextInt(ReadinessStage.values().length)])
-                .productDescription(FAKER.commerce().productName())
+                .productDescription(productName)
                 .productUseCases(FAKER.commerce().material())
                 .productBenefits(FAKER.commerce().price())
                 .organization(Organization.values()[RANDOM.nextInt(ReadinessStage.values().length)])
@@ -71,6 +73,19 @@ public class FakerService {
                 .site("www." + FAKER.app().name().toLowerCase() + ".ru")
                 .sourceOfInformation("СМИ")
                 .presentationUrl("http://link/company_project.ptpp")
+                .projectPassport(ProjectPassport.builder()
+                        .projectName(FAKER.commerce().productName())
+                        .orgName(Organization.values()[RANDOM.nextInt(ReadinessStage.values().length)].getValue())
+                        .participant("Да")
+                        .projectManager(FAKER.name().fullName())
+                        .programCoordinator(FAKER.name().fullName())
+                        .orgCoordinator(FAKER.name().fullName())
+                        .description(productName)
+                        .term("Срок " + FAKER.date().birthday().toString())
+                        .context("Городская среда в пробках")
+                        .profit("Сокращаем пробки")
+                        .projectStage(ProjectStage.values()[RANDOM.nextInt(ProjectStage.values().length)])
+                        .build())
                 .build();
     }
 
