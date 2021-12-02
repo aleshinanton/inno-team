@@ -1,5 +1,7 @@
 package ru.jat.innoteam.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -11,5 +13,6 @@ public enum PeopleAmount {
     FROM_100_TO_500("от 100 до 500"),
     MORE_THAN_500("более 500");
 
+    @JsonValue
     private final String value;
 }

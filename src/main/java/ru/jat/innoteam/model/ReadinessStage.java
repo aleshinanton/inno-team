@@ -1,5 +1,6 @@
 package ru.jat.innoteam.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -10,5 +11,6 @@ public enum ReadinessStage {
     PROTOTYPE("Прототип"),
     PRODUCT("Продукт");
 
+    @JsonValue
     private final String value;
 }

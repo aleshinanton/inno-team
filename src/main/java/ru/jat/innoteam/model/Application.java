@@ -1,6 +1,7 @@
 package ru.jat.innoteam.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 
@@ -35,6 +36,7 @@ public class Application {
     /**
      * Стадия готовности продукта * (Варианты ответа: Идея, Прототип, продукт)
      */
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     private ReadinessStage stage;
     /**
      * Краткое описание продукта
@@ -52,6 +54,7 @@ public class Application {
      * Организация Московского транспорта, интересная в первую очередь *
      * (Варианты ответа: Московский метрополитен, мосгорстранс, ЦОДД, Организатор перевозок, Мостранспроект, АМПП)
      */
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     private Organization organization;
     /**
      * Запрос к акселератору и видение пилотного проекта
@@ -62,6 +65,7 @@ public class Application {
      * (Варианты ответа: “да, требуется сертификация и у нас она есть”, “да, требуется сертификация, но  у нас ее нет”,
      * “нет, не требуется”)
      */
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     private CertificationRequirementStatus certificationRequirementStatus;
     /**
      * ФИО контактного лица по заявке
@@ -90,6 +94,7 @@ public class Application {
     /**
      * Сколько человек в организации * (Варианты ответа: Менее 20, от 20 до 100, от 100 до 500, более 500)
      */
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     private PeopleAmount peopleAmount;
     /**
      * Сайт
