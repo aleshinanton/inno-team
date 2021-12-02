@@ -1,12 +1,33 @@
 package ru.jat.innoteam.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import lombok.*;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Форма заявки для стартапа
  */
+@Getter
+@Setter
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(indexName = "application")
 @JsonAutoDetect
 public class Application {
+    /**
+     * Идентификатор заявки
+     */
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     /**
      * Наименование команды/организации
      */
