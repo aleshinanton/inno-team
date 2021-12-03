@@ -26,4 +26,9 @@ public class ApplicationController {
     public Page<Application> fuzzySearch(@RequestParam String q, Pageable pageable) {
         return applicationRepository.find(q, pageable);
     }
+
+    @GetMapping("/search/fulltext")
+    public Page<Application> fullTextSearch(@RequestParam String q, Pageable pageable) {
+        return applicationRepository.multiFieldFullTextSearch(q, pageable);
+    }
 }
