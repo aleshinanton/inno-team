@@ -9,6 +9,9 @@
     <div class="responsible">
       <p>{{ responsible }}</p>
     </div>
+    <div class="tags">
+      <span v-for="item in tags" :key="item"><span v-if="!header" class="tag">{{item}}</span></span>
+    </div>
     <div class="arrow">
       <p v-if="!header">&#5171;</p>
     </div>
@@ -21,6 +24,7 @@ export default {
     'taskName',
     'responsible',
     'initiator',
+    'tags',
     'header'
   ],
   data() {
@@ -103,9 +107,23 @@ div {
 }
 
 .name {
-  width: 50%;
+  width: 20%;
   vertical-align: middle;
 }
+
+.tags {
+  width: 30%;
+  vertical-align: middle;
+}
+
+.tag {
+  background-color: #009A96;
+  padding: 2px 10px;
+  color: #fff;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
 .initiator {
   width: 22%;
   vertical-align: middle;
