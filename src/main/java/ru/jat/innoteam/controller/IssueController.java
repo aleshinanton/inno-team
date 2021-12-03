@@ -35,7 +35,7 @@ public class IssueController {
         return issueRepository.save(issue);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{uuid}")
     public void removeIssueByUuid(@PathVariable("uuid") String uuid) {
         issueRepository.deleteById(UUID.fromString(uuid));
     }

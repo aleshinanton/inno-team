@@ -1,8 +1,9 @@
 package ru.jat.innoteam.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+
+import java.util.List;
 
 /**
  * Паспорт проекта
@@ -54,10 +55,21 @@ public class Project {
     /**
      * ОЖИДАЕМЫЕ ЭФФЕКТЫ ПРОЕКТА
      */
-    private String profit;
+    @Singular
+    private List<ExpectedProjectEffect> expectedProjectEffects;
     /**
      * ЭТАПЫ ПРОЕКТА
      */
-    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-    private ProjectStage projectStage;
+    @Singular
+    private List<ProjectStage> projectStages;
+    /**
+     * Команда проекта
+     */
+    @Singular
+    private List<Member> projectMembers;
+    /**
+     * Бюджет проекта
+     */
+    @Singular
+    private List<ExpenseItem> expenseItems;
 }
