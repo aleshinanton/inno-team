@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * Форма заявки для стартапа
@@ -37,6 +39,7 @@ public class Application {
     /**
      * Кейсы использования продукта
      */
+    @Field(type = FieldType.Text, fielddata = true)
     private String productUseCases;
     /**
      * Польза продукта
@@ -100,4 +103,9 @@ public class Application {
      * Ссылка на презентацию
      */
     private String presentationUrl;
+
+    /**
+     * Паспорт проекта
+     */
+    private ProjectPassport projectPassport;
 }

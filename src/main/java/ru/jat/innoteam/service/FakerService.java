@@ -3,21 +3,12 @@ package ru.jat.innoteam.service;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequest;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.Response;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.GetIndexRequest;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.stereotype.Service;
 import ru.jat.innoteam.model.*;
 import ru.jat.innoteam.repository.ApplicationRepository;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -46,7 +37,6 @@ public class FakerService {
      */
     @EventListener(ApplicationReadyEvent.class)
     public void generateFakeData() {
-        log.info("count = " + applicationRepository.count());
         if (applicationRepository.count() == 0) {
             log.info("Наполним данными эластик");
             var applications = IntStream.range(1, 100).mapToObj(i -> getApplication((long) i)).collect(Collectors.toList());
@@ -57,15 +47,17 @@ public class FakerService {
 
     /**
      * Метод для генерации фейковой заявки
+     *
      * @param id идентификатор заявки
      * @return
      */
     public Application getApplication(Long id) {
+        var productName = FAKER.commerce().productName();
         return Application.builder()
                 .id(id)
                 .teamName(FAKER.team().name())
                 .stage(ReadinessStage.values()[RANDOM.nextInt(ReadinessStage.values().length)])
-                .productDescription(FAKER.commerce().productName())
+                .productDescription(productName)
                 .productUseCases(FAKER.commerce().material())
                 .productBenefits(FAKER.commerce().price())
                 .organization(Organization.values()[RANDOM.nextInt(ReadinessStage.values().length)])
@@ -81,6 +73,19 @@ public class FakerService {
                 .site("www." + FAKER.app().name().toLowerCase() + ".ru")
                 .sourceOfInformation("СМИ")
                 .presentationUrl("http://link/company_project.ptpp")
+                .projectPassport(ProjectPassport.builder()
+                        .projectName(FAKER.commerce().productName())
+                        .orgName(Organization.values()[RANDOM.nextInt(ReadinessStage.values().length)].getValue())
+                        .participant("Да")
+                        .projectManager(FAKER.name().fullName())
+                        .programCoordinator(FAKER.name().fullName())
+                        .orgCoordinator(FAKER.name().fullName())
+                        .description(productName)
+                        .term("Срок " + FAKER.date().birthday().toString())
+                        .context("Городская среда в пробках")
+                        .profit("Сокращаем пробки")
+                        .projectStage(ProjectStage.values()[RANDOM.nextInt(ProjectStage.values().length)])
+                        .build())
                 .build();
     }
 
