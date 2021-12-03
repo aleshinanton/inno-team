@@ -9,7 +9,8 @@
         <div class="itemField"><span class="fieldName">Координатор от организации транспортного комплекса Москвы:</span> {{item.project.orgCoordinator}}</div>
         <div class="itemField"><span class="fieldName">Краткое описание продукта:</span> {{item.project.description}}</div>
         <div class="itemField"><span class="fieldName">Сроки реализации проекта:</span> {{item.project.term}}</div>
-        <div class="itemField"><span class="fieldName">Контекст и потребности:</span> {{item.project.context}}</div> 
+        <div class="itemField"><span class="fieldName">Контекст и потребности:</span> {{item.project.context}}</div>
+        <div class="itemField"><span class="fieldName">Tеги:</span><span v-for="item in item.tags" :key="item"><span class="tag">{{item}}</span></span></div>
     </div>
 </template>
 
@@ -50,6 +51,14 @@ export default {
 .project {
     text-align: left;
     color: #4e5861;
+}
+
+.tag {
+  background-color: #009A96;
+  padding: 2px 10px;
+  color: #fff;
+  border-radius: 10px;
+  margin-left: 10px;
 }
 
 .itemField {
