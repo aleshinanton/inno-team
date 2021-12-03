@@ -21,6 +21,7 @@ header {
     display: flex;
     padding: 3px 0;
     justify-content: space-between;
+    border-bottom: 1px solid #009A96;
 }
 
 h1 {
