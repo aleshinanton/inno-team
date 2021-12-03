@@ -25,7 +25,8 @@ services:
         condition: service_healthy
       keycloak:
         condition: service_started
-
+      python:
+        condition: service_started
   keycloak:
     image: jboss/keycloak:15.0.2
     container_name: keycloak
@@ -89,6 +90,11 @@ services:
       interval: 30s
       retries: 2
     restart: on-failure
+  python:
+    container_name: inno_team_python
+    build: python/models
+    ports:
+      - "1937:1937"
 volumes:
   esdata:
   pgdata:
