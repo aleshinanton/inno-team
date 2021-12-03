@@ -3,8 +3,6 @@ package ru.jat.innoteam.model;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -81,13 +79,11 @@ public class Issue {
      */
     @JsonIgnore
     @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    @CreationTimestamp
     private LocalDateTime createdAt;
     /**
      * Время обновления запроса на решения проблемы
      */
     @JsonIgnore
     @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }
