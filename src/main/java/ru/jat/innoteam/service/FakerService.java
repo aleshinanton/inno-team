@@ -62,6 +62,7 @@ public class FakerService {
                 .initiator(FAKER.name().fullName())
                 .responsible(FAKER.name().fullName())
                 .resolveTerm("Решить до конца 2022 года")
+                .tryToResolve("Да. Пробовали изменять скорость потока.")
                 .contact(FAKER.phoneNumber().cellPhone() + " " + FAKER.name().fullName())
                 .build();
     }

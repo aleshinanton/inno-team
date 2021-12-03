@@ -5,6 +5,7 @@ import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.stereotype.Component;
 import ru.jat.innoteam.model.Issue;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -18,6 +19,10 @@ public class IssueBeforeConvertCallback implements BeforeConvertCallback<Issue> 
         if (issue.getUuid() == null) {
             issue.setUuid(UUID.randomUUID());
         }
+        if (issue.getCreatedAt() == null) {
+            issue.setCreatedAt(LocalDateTime.now());
+        }
+        issue.setUpdatedAt(LocalDateTime.now());
         return issue;
     }
 }
