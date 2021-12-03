@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.jat.innoteam.model.Application;
 import ru.jat.innoteam.repository.ApplicationRepository;
 
@@ -23,5 +20,15 @@ public class ApplicationController {
     @GetMapping
     public Page<Application> loadApplicationsPage(@NotNull @ParameterObject Pageable pageable) {
         return applicationRepository.findAll(pageable);
+    }
+
+    @GetMapping("/search")
+    public Page<Application> fuzzySearch(@RequestParam String q, Pageable pageable) {
+        return applicationRepository.find(q, pageable);
+    }
+
+    @GetMapping("/search/fulltext")
+    public Page<Application> fullTextSearch(@RequestParam String q, Pageable pageable) {
+        return applicationRepository.multiFieldFullTextSearch(q, pageable);
     }
 }

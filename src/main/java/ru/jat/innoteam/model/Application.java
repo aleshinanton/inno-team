@@ -4,11 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.elasticsearch.annotations.Document;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * Форма заявки для стартапа
@@ -25,9 +22,6 @@ public class Application {
     /**
      * Идентификатор заявки
      */
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     /**
      * Наименование команды/организации
@@ -45,6 +39,7 @@ public class Application {
     /**
      * Кейсы использования продукта
      */
+    @Field(type = FieldType.Text, fielddata = true)
     private String productUseCases;
     /**
      * Польза продукта
@@ -108,4 +103,8 @@ public class Application {
      * Ссылка на презентацию
      */
     private String presentationUrl;
+    /**
+     * Паспорт проекта
+     */
+    private Project project;
 }
