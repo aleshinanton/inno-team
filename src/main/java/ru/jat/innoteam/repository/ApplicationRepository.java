@@ -13,8 +13,9 @@ public interface ApplicationRepository extends ElasticsearchRepository<Applicati
 
     /**
      * Нечеткий поиск
+     *
      * @param productUseCases строка поиска
-     * @param pageable постраничный фильтр
+     * @param pageable        постраничный фильтр
      * @return
      */
     @Query("{\"multi_match\": {\"query\": \"?0\", \"fields\": [\"productUseCases\"], \"fuzziness\": \"AUTO\"}}")
@@ -22,12 +23,12 @@ public interface ApplicationRepository extends ElasticsearchRepository<Applicati
 
     /**
      * Полнотекстовый поиск по всем полям
+     *
      * @param searchString строка поиска
-     * @param pageable постраничный фильтр
+     * @param pageable     постраничный фильтр
      * @return
      */
     @Query("{\n" +
-            "  \"query\": {\n" +
             "    \"multi_match\": {\n" +
             "      \"query\": \"?0\",\n" +
             "      \"minimum_should_match\": \"35%\",\n" +
@@ -40,7 +41,6 @@ public interface ApplicationRepository extends ElasticsearchRepository<Applicati
             "        \"acceleratorRequest\"\n" +
             "      ]\n" +
             "    }\n" +
-            "  }\n" +
-            "}\n")
+            "  }")
     Page<Application> multiFieldFullTextSearch(String searchString, Pageable pageable);
 }
