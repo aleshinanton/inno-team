@@ -8,6 +8,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import ru.jat.innoteam.model.*;
 import ru.jat.innoteam.repository.ApplicationRepository;
+import ru.jat.innoteam.repository.IssueRepository;
 
 import java.util.Locale;
 import java.util.Random;
@@ -23,6 +24,7 @@ import java.util.stream.IntStream;
 public class FakerService {
 
     private final ApplicationRepository applicationRepository;
+    private final IssueRepository issueRepository;
 
     private static final Faker FAKER = new Faker(new Locale("ru"));
     private static final Random RANDOM = new Random();
@@ -37,12 +39,31 @@ public class FakerService {
      */
     @EventListener(ApplicationReadyEvent.class)
     public void generateFakeData() {
+        //Если заявок нет, то наполним
         if (applicationRepository.count() == 0) {
             log.info("Наполним данными эластик");
-            var applications = IntStream.range(1, 100).mapToObj(i -> getApplication((long) i)).collect(Collectors.toList());
+            var applications = IntStream.range(1, 101).mapToObj(i -> getApplication((long) i)).collect(Collectors.toList());
             applicationRepository.saveAll(applications);
-            log.info("В эластик добавлено {} записей", applicationRepository.count());
+            log.info("В эластик добавлено {} записей заявок", applicationRepository.count());
         }
+        //Если проблем нет, то наполним
+        if (issueRepository.count() == 0) {
+            issueRepository.save(getIssue());
+            log.info("В эластик добавлена запись проблемы");
+        }
+    }
+
+    public Issue getIssue() {
+        return Issue.builder()
+                .issue("Пробки на дорогах")
+                .issueDescription("Ежедневно Москва тратить в пробках N часов.")
+                .affect("Экономика теряет 1% ВВП ежегодно")
+                .cause("Плохо отлажено переключение дорожных контроллеров")
+                .initiator(FAKER.name().fullName())
+                .responsible(FAKER.name().fullName())
+                .resolveTerm("Решить до конца 2022 года")
+                .contact(FAKER.phoneNumber().cellPhone() + " " + FAKER.name().fullName())
+                .build();
     }
 
     /**
@@ -73,8 +94,8 @@ public class FakerService {
                 .site("www." + FAKER.app().name().toLowerCase() + ".ru")
                 .sourceOfInformation("СМИ")
                 .presentationUrl("http://link/company_project.ptpp")
-                .projectPassport(ProjectPassport.builder()
-                        .projectName(FAKER.commerce().productName())
+                .project(Project.builder()
+                        .name(FAKER.commerce().productName())
                         .orgName(Organization.values()[RANDOM.nextInt(ReadinessStage.values().length)].getValue())
                         .participant("Да")
                         .projectManager(FAKER.name().fullName())

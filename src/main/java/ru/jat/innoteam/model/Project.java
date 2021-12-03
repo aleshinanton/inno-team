@@ -14,57 +14,47 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonAutoDetect
-public class ProjectPassport {
+public class Project {
     /**
      * Наименование проекта
      */
-    private String projectName;
-
+    private String name;
     /**
      * Организация транспортного комплекса Москвы
      */
     private String orgName;
-
     /**
      * Участник программы пилотирования «Транспортные инновации Москвы»
      */
     private String participant;
-
     /**
      * Руководитель проекта
      */
     private String projectManager;
-
     /**
      * Координатор от участника программы пилотирования «Транспортные инновации Москвы»
      */
     private String programCoordinator;
-
     /**
      * Координатор от организации транспортного комплекса Москвы
      */
     private String orgCoordinator;
-
     /**
      * Краткое описание продукта
      */
     private String description;
-
     /**
      * Сроки реализации проекта
      */
     private String term;
-
     /**
      * КОНТЕКСТ И ПОТРЕБНОСТИ
      */
     private String context;
-
     /**
      * ОЖИДАЕМЫЕ ЭФФЕКТЫ ПРОЕКТА
      */
     private String profit;
-
     /**
      * ЭТАПЫ ПРОЕКТА
      */
