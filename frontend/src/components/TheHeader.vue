@@ -1,7 +1,7 @@
 <template>
   <header>
-            <h1>Витрина инноваций</h1>
-        <img class="logo" src="@/assets/tim.svg" alt="Транспортные инновации Москвы">
+    <h1>Витрина инноваций</h1>
+    <img class="logo" src="@/assets/tim.svg" alt="Транспортные инновации Москвы">
   </header>
 </template>
 
