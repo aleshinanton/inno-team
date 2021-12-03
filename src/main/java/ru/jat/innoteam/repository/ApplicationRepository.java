@@ -38,6 +38,10 @@ public interface ApplicationRepository extends ElasticsearchRepository<Applicati
             "        \"productUseCases\",\n" +
             "        \"acceleratorRequest\",\n" +
             "        \"productBenefits\",\n" +
+            "        \"project.name\",\n" +
+            "        \"project.description\",\n" +
+            "        \"project.context\",\n" +
+            "        \"project.profit\",\n" +
             "        \"acceleratorRequest\"\n" +
             "      ]\n" +
             "    }\n" +

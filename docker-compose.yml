@@ -86,7 +86,7 @@ services:
       - "9200:9200"
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:9200" ]
-      interval: 10s
+      interval: 20s
       retries: 2
 volumes:
   esdata:
