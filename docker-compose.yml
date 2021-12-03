@@ -44,6 +44,7 @@ services:
       - "9000:9000"
     volumes:
       - ./keycloak/realm-export.json:/tmp/realm-export.json
+      - ./keycloak/themes/custom:/opt/jboss/keycloak/themes/custom/
     command:
       - -Djboss.http.port=9000
     healthcheck:

@@ -7,6 +7,7 @@ import { getToken } from '@baloise/vue-keycloak'
 const app = createApp(App)
 
 const axiosApiInstance = $axios.create()
+axiosApiInstance.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 // Request interceptor for API calls
 axiosApiInstance.interceptors.request.use(
@@ -31,7 +32,8 @@ app.use(vueKeycloak, {
     config: {
         url: process.env.VUE_APP_KEYCLOAK_URL,
         realm: 'inno_team',
-        clientId: 'inno_team_client'
+        clientId: 'inno_team_client',
+        "enable-cors": true
     }
 })
 
