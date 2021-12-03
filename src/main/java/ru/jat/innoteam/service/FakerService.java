@@ -106,7 +106,7 @@ public class FakerService {
                         .term("Срок " + FAKER.date().birthday().toString())
                         .context("Городская среда в пробках")
                         .profit("Сокращаем пробки")
-                        .projectStage(ProjectStage.values()[RANDOM.nextInt(ProjectStage.values().length)])
+                        .stage(ProjectStage.values()[RANDOM.nextInt(ProjectStage.values().length)])
                         .build())
                 .build();
     }

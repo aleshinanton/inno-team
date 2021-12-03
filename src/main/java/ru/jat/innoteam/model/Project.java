@@ -59,5 +59,5 @@ public class Project {
      * ЭТАПЫ ПРОЕКТА
      */
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-    private ProjectStage projectStage;
+    private ProjectStage stage;
 }

@@ -106,5 +106,6 @@ public class Application {
     /**
      * Паспорт проекта
      */
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     private Project project;
 }

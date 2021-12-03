@@ -6,12 +6,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import ru.jat.innoteam.model.Application;
-import ru.jat.innoteam.model.Issue;
 import ru.jat.innoteam.repository.ApplicationRepository;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
-import java.util.UUID;
 
 @CrossOrigin
 @RestController
