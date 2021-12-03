@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <TheHeader />
     <router-view></router-view>
     <!-- <test-data></test-data> -->
@@ -31,5 +31,9 @@ body {
   margin: 0;
   background-color: #F6F7FA;
   padding: 0 10px;
+}
+.main {
+  max-width: 1080px;
+  margin: 0 auto;
 }
 </style>
