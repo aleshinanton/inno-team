@@ -1,8 +1,8 @@
 <template>
     <div class="taskShowCase">
         <the-navigation></the-navigation>
-        <task-card task-name="Проблема" responsible="Ответственный" header="true"></task-card>
-        <task-card v-for="item in listItems" :key="item.uuid" :task-name="item.issue" :responsible="item.responsible"></task-card>
+        <task-card task-name="Проблема" responsible="Ответственный" initiator="Инициатор" header="true"></task-card>
+        <task-card v-for="item in listItems" :key="item.uuid" :task-name="item.issue" :responsible="item.responsible" :initiator="item.initiator"></task-card>
         <Pagination v-if="listItems" :total-pages="totalPages" :per-page="recordsPerPage" :current-page="page+1" @pagechanged="onPageChange" />
     </div>
 

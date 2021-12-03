@@ -10,6 +10,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -84,4 +85,9 @@ public class Issue {
     @JsonIgnore
     @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime updatedAt;
+
+    /**
+     * Ключевые метки заявки
+     */
+    private List<String> tags;
 }

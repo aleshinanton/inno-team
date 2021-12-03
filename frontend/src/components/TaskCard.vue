@@ -3,6 +3,9 @@
     <div class="name">
       <p>{{ taskName }}</p>
     </div>
+    <div class="initiator">
+      <p>{{ initiator }}</p>
+    </div>
     <div class="responsible">
       <p>{{ responsible }}</p>
     </div>
@@ -17,6 +20,7 @@ export default {
   props: [
     'taskName',
     'responsible',
+    'initiator',
     'header'
   ],
   data() {
@@ -102,8 +106,12 @@ div {
   width: 50%;
   vertical-align: middle;
 }
+.initiator {
+  width: 22%;
+  vertical-align: middle;
+}
 
 .responsible {
-  width: 44%;
+  width: 22%;
 }
 </style>

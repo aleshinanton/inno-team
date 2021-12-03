@@ -1,6 +1,5 @@
 package ru.jat.innoteam.service;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,17 +49,26 @@ public class FakerService {
             applicationRepository.saveAll(applications);
             log.info("В эластик добавлено {} записей заявок", applicationRepository.count());
         }
+        issueRepository.deleteAll();
         //Если проблем нет, то наполним
         if (issueRepository.count() == 0) {
-            issueRepository.save(getIssue());
-            log.info("В эластик добавлена запись проблемы");
+            log.info("Добавим проблемы");
+            var issues = IntStream.range(1, 101).mapToObj(i -> getIssue()).collect(Collectors.toList());
+            issueRepository.saveAll(issues);
+            log.info("В эластик добавлено {} проблем", issueRepository.count());
         }
     }
 
     public Issue getIssue() {
+        var issueDescription = PhraseUtil.getPhrase();
+        var tags = restTemplate.postForObject("/predict/gettags", Map.of("text", issueDescription), String.class);
+        List<String> tagList = Collections.emptyList();
+        if (tags != null) {
+            tagList = Arrays.asList(tags.split(" "));
+        }
         return Issue.builder()
                 .issue("Пробки на дорогах")
-                .issueDescription("Ежедневно Москва тратить в пробках N часов.")
+                .issueDescription(issueDescription)
                 .affect("Экономика теряет 1% ВВП ежегодно")
                 .cause("Плохо отлажено переключение дорожных контроллеров")
                 .initiator(FAKER.name().fullName())
@@ -68,6 +76,7 @@ public class FakerService {
                 .resolveTerm("Решить до конца 2022 года")
                 .tryToResolve("Да. Пробовали изменять скорость потока.")
                 .contact(FAKER.phoneNumber().cellPhone() + " " + FAKER.name().fullName())
+                .tags(tagList)
                 .build();
     }
 
