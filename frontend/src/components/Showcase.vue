@@ -8,7 +8,7 @@
             </form>
         </div>
         <project-card v-for="item in listItems" :key="item.id" :project-name="item.project.name" :project-id="item.id" :organisation="item.project.orgName" :project-status="item.stage"></project-card>
-        <Pagination v-if="listItems" :total-pages="totalPages" :per-page="recordsPerPage" :current-page="page" @pagechanged="onPageChange" />
+        <Pagination v-if="listItems" :total-pages="totalPages" :per-page="recordsPerPage" :current-page="page+1" @pagechanged="onPageChange" />
     </div>
 </template>
 

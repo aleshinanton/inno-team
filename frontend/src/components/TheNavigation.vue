@@ -23,7 +23,8 @@ a {
 h3 {
     text-align: left;
     padding: 0 15px;
-    color: #71837f;
+    color: #009A96;
+    text-decoration: underline;
     cursor: pointer;
     font-weight: 400;
 }
@@ -33,7 +34,7 @@ h3 {
 }
 
 .active h3, .active {
-    color: #009A96;
-    text-decoration: underline;
+    color: #71837f;
+    text-decoration: none;
 }
 </style>

@@ -1,20 +1,20 @@
 <template>
   <ul class="pagination">
     <li class="pagination-item">
-      <a href="#" @click.prevent="onClickFirstPage" :class="isInFirstPage? 'disabled':''" :disabled="isInFirstPage">First</a>
+      <a href="#" @click.prevent="onClickFirstPage" :class="isInFirstPage? 'disabled':''" :disabled="isInFirstPage">В начало</a>
     </li>
     <li class="pagination-item">
-      <a href="#" @click.prevent="onClickPreviousPage" :class="isInFirstPage? 'disabled':''" :disabled="isInFirstPage">«</a>
+      <a href="#" @click.prevent="onClickPreviousPage" :class="isInFirstPage? 'disabled':''" :disabled="isInFirstPage">&#5176;</a>
     </li>
     <li :key="page.id" v-for="page in pages" class="pagination-item">
       <a href="#" @click.prevent="onClickPage(page.name)" :disabled="page.isDisabled"
         :class="{ active: isPageActive(page.name) }">{{ page.name }}</a>
     </li>
     <li class="pagination-item">
-      <a href="#" @click.prevent="onClickNextPage" :class="isInLastPage? 'disabled':''" :disabled="isInLastPage">»</a>
+      <a href="#" @click.prevent="onClickNextPage" :class="isInLastPage? 'disabled':''" :disabled="isInLastPage">&#5171;</a>
     </li>
     <li class="pagination-item">
-      <a href="#" @click.prevent="onClickLastPage" :class="isInLastPage? 'disabled':''" :disabled="isInLastPage">Last</a>
+      <a href="#" @click.prevent="onClickLastPage" :class="isInLastPage? 'disabled':''" :disabled="isInLastPage">В конец</a>
     </li>
   </ul>
 </template>
@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     isInFirstPage () {
-      return this.currentPage === 0
+      return this.currentPage === 1
     },
     isInLastPage () {
       if (this.totalPages === 0) {
@@ -52,18 +52,15 @@ export default {
       return this.currentPage === this.totalPages
     },
     startPage () {
-      // When on the first page
-      if (this.currentPage === 0) {
+      if (this.currentPage === 1) {
         return 1
       }
-      // When on the last page
       if (this.totalPages < this.maxVisibleButtons) {
         return 1
       }
       if (this.currentPage === this.totalPages) {
         return this.totalPages - this.maxVisibleButtons + 1
       }
-      // When in between
       return this.currentPage - 1
     },
     endPage () {
@@ -91,29 +88,28 @@ export default {
       if (this.isInFirstPage) {
         return false
       }
-      this.$emit('pagechanged', 1)
+      this.$emit('pagechanged', 0)
     },
     onClickPreviousPage () {
       if (this.isInFirstPage) {
         return false
       }
-      this.$emit('pagechanged', this.currentPage - 1)
+      this.$emit('pagechanged', this.currentPage - 2)
     },
     onClickPage (page) {
-      this.$emit('pagechanged', page)
+      this.$emit('pagechanged', page - 1)
     },
     onClickNextPage () {
       if (this.isInLastPage) {
         return false
       }
-      this.$emit('pagechanged', this.currentPage + 1)
+      this.$emit('pagechanged', this.currentPage)
     },
     onClickLastPage () {
-      console.log('onClickLastPage')
       if (this.isInLastPage) {
         return false
       }
-      this.$emit('pagechanged', this.totalPages)
+      this.$emit('pagechanged', this.totalPages - 1)
     },
     isPageActive (page) {
       return this.currentPage === page
@@ -122,12 +118,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  ul {
-      border: 1px solid black;
-  }
   .pagination {
     list-style-type: none;
-    float: right;
     margin: 10px 0;
     .pagination-item {
       display: inline-block;
@@ -142,9 +134,8 @@ export default {
         cursor: no-drop;
       }
       .active {
-        background-color: tomato;
+        background-color: #009A96;
         color: #ffffff !important;
-        font-weight: bold;
         padding: 3px 8px;
       }
     }

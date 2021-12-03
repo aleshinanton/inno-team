@@ -1,6 +1,6 @@
 <template>
     <div class="project">
-        <p class="breadcrumbs"><a href="/">Реестр решений</a> &#8594; {{projectId}}</p>
+        <p class="breadcrumbs"><a href="/projects">Реестр решений</a> &#8594; {{projectId}}</p>
         <div class="itemField"><span class="fieldName">Наименование проекта:</span> {{item.project.name}}</div>
         <div class="itemField"><span class="fieldName">Организация транспортного комплекса Москвы:</span> {{item.project.orgName}}</div>
         <div class="itemField"><span class="fieldName">Участник программы пилотирования «Транспортные инновации Москвы»:</span> {{item.project.participant}}</div>
@@ -44,6 +44,7 @@ export default {
 
 .breadcrumbs a {
     color: #009A96;
+    text-decoration: underline;
 }
 
 .project {
@@ -62,6 +63,7 @@ export default {
 .fieldName {
     display: inline-block;
     width: 50%;
+    height: 100%;
     font-weight: 600;
     padding-right: 10px;
 }
