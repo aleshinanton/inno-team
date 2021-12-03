@@ -1,21 +1,23 @@
 <template>
-  <div class="card">
-    <div class="id">
-      <p>{{projectId}}</p>
+  <router-link :to="projectLink">
+    <div class="card">
+      <div class="id">
+        <p>{{projectId}}</p>
+      </div>
+      <div class="name">
+        <p>{{projectName}}</p>
+      </div>
+      <div class="organisation">
+        <p>{{organisation}}</p>
+      </div>
+      <div class="status">
+        <p><span :class="setColor()">&#9679;</span> {{projectStatus}}</p>
+      </div>
+      <div class="arrow">
+        <p>&#5171;</p>
+      </div>
     </div>
-    <div class="name">
-      <p>{{projectName}}</p>
-    </div>
-    <div class="organisation">
-      <p>{{organisation}}</p>
-    </div>
-    <div class="status">
-      <p>{{projectStatus}}</p>
-    </div>
-    <div class="arrow">
-      <p>&#5171;</p>
-    </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -25,7 +27,22 @@ export default {
     'projectId',
     'organisation',
     'projectStatus'
-  ]
+  ],
+  data() {
+    return {
+      colorMarker: 'green'
+    }
+  },
+  methods: {
+    setColor () {
+      return this.projectStatus === 'Идея' ? 'green' : (this.projectStatus === 'Прототип' ? 'blue' : (this.projectStatus === 'Продукт' ? 'orange' : 'black'))
+    }
+  },
+  computed: {
+    projectLink() {
+      return '/projects/' + this.projectId;
+    }
+  }
 }
 </script>
 
@@ -53,6 +70,22 @@ p {
   text-overflow: ellipsis;
 }
 
+a {
+  color: black;
+}
+
+.green {
+  color: green;
+}
+
+.blue {
+  color: rgb(75, 75, 245);
+}
+
+.orange {
+  color: orange;
+}
+
 div {
   padding: 0 5px;
   overflow: hidden;
@@ -60,6 +93,7 @@ div {
 
 .arrow {
   width: 6%;
+  color: #009A96;
 }
 
 .arrow p {

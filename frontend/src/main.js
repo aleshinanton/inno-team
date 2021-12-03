@@ -1,10 +1,26 @@
-import {createApp} from 'vue'
-import { vueKeycloak } from '@baloise/vue-keycloak'
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue'
+import ShowCase from './components/Showcase.vue'
+import TasksShowcase from './components/TasksShowcase.vue'
+import DetaolInformation from './components/DetailInformation.vue'
 import { $axios } from '@baloise/vue-axios'
+import { vueKeycloak } from '@baloise/vue-keycloak'
 import { getToken } from '@baloise/vue-keycloak'
 
-const app = createApp(App)
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+      { path: '/', redirect: '/projects' },
+      { path: '/projects', component: ShowCase },
+      { path: '/tasks', component: TasksShowcase },
+      { path: '/projects/:projectId', component: DetaolInformation, props: true },
+    ],
+    linkActiveClass: 'active'
+});
+
+const app = createApp(App);
 
 const axiosApiInstance = $axios.create()
 axiosApiInstance.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -23,6 +39,8 @@ axiosApiInstance.interceptors.request.use(
     },
 )
 
+app.use(router)
+
 app.use(vueKeycloak, {
     initOptions: {
         flow: 'standard', // default
@@ -37,4 +55,4 @@ app.use(vueKeycloak, {
     }
 })
 
-app.mount('#app')
+app.mount('#app');

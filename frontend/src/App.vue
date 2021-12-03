@@ -1,22 +1,20 @@
 <template>
   <div>
     <TheHeader />
-    <Showcase />
+    <router-view></router-view>
     <!-- <test-data></test-data> -->
   </div>
 </template>
 
 <script>
 import TheHeader from './components/TheHeader.vue'
-import Showcase from './components/Showcase.vue'
-// import TestData from './components/TestData.vue';
+// import TheNavigation from './components/TheNavigation.vue'
 
 export default {
   name: 'App',
   components: {
     TheHeader,
-    Showcase,
-    // TestData
+    // TheNavigation
   }
 }
 </script>
