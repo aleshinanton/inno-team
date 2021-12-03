@@ -11,17 +11,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 header {
-    max-width: 1280px;
-    width: 100%;
-    height: 8vh;
+    max-height: 8vh;
     min-height: 30px;
     margin: 0 auto;
     display: flex;
-    padding: 3px 0;
+    padding: 5px 0;
     justify-content: space-between;
     border-bottom: 1px solid #009A96;
+}
+
+img {
+  max-height: 40px;
 }
 
 h1 {
