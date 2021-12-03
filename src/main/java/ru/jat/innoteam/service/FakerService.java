@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import ru.jat.innoteam.model.*;
 import ru.jat.innoteam.repository.ApplicationRepository;
 import ru.jat.innoteam.repository.IssueRepository;
-import ru.jat.innoteam.util.PhraseUtil;
+import ru.jat.innoteam.util.RandomUtil;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -60,7 +60,7 @@ public class FakerService {
     }
 
     public Issue getIssue() {
-        var issueDescription = PhraseUtil.getPhrase();
+        var issueDescription = RandomUtil.getPhrase();
         var tags = restTemplate.postForObject("/predict/gettags", Map.of("text", issueDescription), String.class);
         List<String> tagList = Collections.emptyList();
         if (tags != null) {
@@ -87,7 +87,7 @@ public class FakerService {
      * @return
      */
     public Application getApplication(Long id) {
-        var productDescription = PhraseUtil.getPhrase();
+        var productDescription = RandomUtil.getPhrase();
         String tags = restTemplate.postForObject("/predict/gettags", Map.of("text", productDescription), String.class);
         List<String> tagList = Collections.emptyList();
         if (tags != null) {
@@ -191,6 +191,38 @@ public class FakerService {
                                 .id(FAKER.number().digits(2))
                                 .name("Аренда помещения")
                                 .indicator(FAKER.number().digits(7))
+                                .build())
+                        .projectStatus(ProjectStatus.builder()
+                                .status(RandomUtil.getStatus())
+                                .expectedResult("Успех")
+                                .expectedResult("Только Успех")
+                                .term(FAKER.date().birthday().toString())
+                                .build())
+                        .projectStatus(ProjectStatus.builder()
+                                .status(RandomUtil.getStatus())
+                                .expectedResult("Успех")
+                                .expectedResult("Не только успех")
+                                .term(FAKER.date().birthday().toString())
+                                .build())
+                        .projectMeeting(ProjectMeeting.builder()
+                                .comment(FAKER.chuckNorris().fact())
+                                .date(FAKER.date().birthday().toString())
+                                .build())
+                        .projectMeeting(ProjectMeeting.builder()
+                                .comment(FAKER.chuckNorris().fact())
+                                .date(FAKER.date().birthday().toString())
+                                .build())
+                        .projectMeeting(ProjectMeeting.builder()
+                                .comment(FAKER.chuckNorris().fact())
+                                .date(FAKER.date().birthday().toString())
+                                .build())
+                        .projectMaterial(ProjectMaterial.builder()
+                                .name(FAKER.harryPotter().book())
+                                .url(FAKER.internet().url())
+                                .build())
+                        .projectMaterial(ProjectMaterial.builder()
+                                .name(FAKER.harryPotter().book())
+                                .url(FAKER.internet().url())
                                 .build())
                         .build())
                 .tags(tagList)

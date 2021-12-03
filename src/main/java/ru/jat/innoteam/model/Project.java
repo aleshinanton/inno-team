@@ -72,4 +72,19 @@ public class Project {
      */
     @Singular
     private List<ExpenseItem> expenseItems;
+    /**
+     * Статусы проекта
+     */
+    @Singular
+    private List<ProjectStatus> projectStatuses;
+    /**
+     * Собрания по проекту
+     */
+    @Singular
+    private List<ProjectMeeting> projectMeetings;
+    /**
+     * Материалы проекта
+     */
+    @Singular
+    private List<ProjectMaterial> projectMaterials;
 }

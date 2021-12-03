@@ -2,7 +2,7 @@ package ru.jat.innoteam.util;
 
 import java.util.Random;
 
-public class PhraseUtil {
+public class RandomUtil {
     private static final Random RANDOM = new Random();
 
     private static final String[] PHRASES = new String[]{
@@ -57,5 +57,14 @@ public class PhraseUtil {
     public static String getPhrase() {
         int rnd = RANDOM.nextInt(PHRASES.length);
         return PHRASES[rnd];
+    }
+
+    private static final String[] STATUSES = new String[]{
+            "В работе", "Не начат", "Начат", "Завершен"
+    };
+
+    public static String getStatus() {
+        int rnd = RANDOM.nextInt(STATUSES.length);
+        return STATUSES[rnd];
     }
 }
