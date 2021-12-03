@@ -7,7 +7,8 @@
                 <button type="submit" @click="searchRequest()" :disabled="!searchPhrase">Искать</button>
             </form>
         </div>
-        <project-card v-for="item in listItems" :key="item.id" :project-name="item.project.name" :project-id="item.id" :organisation="item.project.orgName" :project-status="item.stage"></project-card>
+      <project-card project-name="Наименование проекта" project-id="№" organisation="Организация" project-status="Статус проекта" header="true"></project-card>
+        <project-card v-for="item in listItems" :key="item.id" :project-name="item.project.name" :project-id="item.id" :organisation="item.project.orgName" :project-status="item.stage" :header="false"></project-card>
         <Pagination v-if="listItems" :total-pages="totalPages" :per-page="recordsPerPage" :current-page="page+1" @pagechanged="onPageChange" />
     </div>
 </template>
@@ -17,14 +18,14 @@ import ProjectCard from './ProjectCard.vue'
 import Pagination from './Pagination.vue'
 import TheNavigation from './TheNavigation.vue'
 import { $axios } from '@baloise/vue-axios'
-// import TheFilters from './TheFilters.vue'
+//import TheFilters from './TheFilters.vue'
 import axios from 'axios'
 export default {
     components: {
         ProjectCard,
         Pagination,
         TheNavigation,
-        // TheFilters
+      //  TheFilters
     },
     data () {
         return {
@@ -51,7 +52,7 @@ export default {
             })
         },
         loadListItem () {
-            $axios.get(`/api/application?page=${this.page}`)
+            $axios.get(`/api/application?page=${this.page}&size=10`)
                 .then(response => {
                 console.log('response', response)
                 this.listItems = response.data.content
@@ -81,7 +82,7 @@ export default {
     margin-top: 20px;
 }
 .filter {
-    height: 100px;
+    height: 50px;
     width: 75%;
     margin: 10px auto;
     padding: 15px;

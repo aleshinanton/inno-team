@@ -1,20 +1,20 @@
 <template>
-  <router-link :to="projectLink">
-    <div class="card">
+  <router-link v-bind:class="{ header: header }" :to="projectLink">
+    <div class="card" v-bind:class="{ header: header }">
       <div class="id">
-        <p>{{projectId}}</p>
+        <p>{{ projectId }}</p>
       </div>
       <div class="name">
-        <p>{{projectName}}</p>
+        <p>{{ projectName }}</p>
       </div>
       <div class="organisation">
-        <p>{{organisation}}</p>
+        <p>{{ organisation }}</p>
       </div>
       <div class="status">
-        <p><span :class="setColor()">&#9679;</span> {{projectStatus}}</p>
+        <p><span v-if="!header" :class="setColor()">&#9679;</span> {{ projectStatus }}</p>
       </div>
       <div class="arrow">
-        <p>&#5171;</p>
+        <p v-if="!header">&#5171;</p>
       </div>
     </div>
   </router-link>
@@ -26,7 +26,8 @@ export default {
     'projectName',
     'projectId',
     'organisation',
-    'projectStatus'
+    'projectStatus',
+    'header'
   ],
   data() {
     return {
@@ -34,7 +35,7 @@ export default {
     }
   },
   methods: {
-    setColor () {
+    setColor() {
       return this.projectStatus === 'Идея' ? 'green' : (this.projectStatus === 'Прототип' ? 'blue' : (this.projectStatus === 'Продукт' ? 'orange' : 'black'))
     }
   },
@@ -48,16 +49,22 @@ export default {
 
 <style>
 .card {
-    width: 95%;
-    margin: 0 auto;
-    height: 50px;
-    display: flex;
-    padding: 0 15px;
-    border-radius: 3px 0 0;
+  width: 95%;
+  margin: 0 auto;
+  height: 50px;
+  display: flex;
+  padding: 0 15px;
+  border-radius: 3px 0 0;
+}
+
+.header {
+  pointer-events: none;
+  opacity: 0.6;
+  border-bottom: 2px solid #009A96;
 }
 
 .card:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
   border-bottom: 2px solid #009A96;
   cursor: pointer;
 }
@@ -102,20 +109,21 @@ div {
 }
 
 .name {
-  width: 50%;
+  width: 25%;
   vertical-align: middle;
 }
+
 .id {
   width: 5%;
   vertical-align: middle;
 }
 
 .status {
-  width: 15%;
+  width: 20%;
   vertical-align: middle;
 }
 
 .organisation {
-  width:21%;
+  width: 41%;
 }
 </style>

@@ -198,8 +198,8 @@ a#kc-current-locale-link::after {
 #kc-logo-wrapper {
     background-image: url(../img/keycloak-logo-2.png);
     background-repeat: no-repeat;
-    height: 63px;
-    width: 300px;
+    height: 110px;
+    width: 330px;
     margin: 62px auto 0;
 }
 

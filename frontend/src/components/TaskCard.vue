@@ -1,22 +1,23 @@
 <template>
-  <div class="card">
-      <div class="name">
-        <p>{{taskName}}</p>
-      </div>
-      <div class="responsible">
-        <p>{{responsible}}</p>
-      </div>
-      <div class="arrow">
-        <p>&#5171;</p>
-      </div>
+  <div class="card" v-bind:class="{ header: header }">
+    <div class="name">
+      <p>{{ taskName }}</p>
     </div>
+    <div class="responsible">
+      <p>{{ responsible }}</p>
+    </div>
+    <div class="arrow">
+      <p v-if="!header">&#5171;</p>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   props: [
     'taskName',
-    'responsible'
+    'responsible',
+    'header'
   ],
   data() {
     return {
@@ -24,7 +25,7 @@ export default {
     }
   },
   methods: {
-    setColor () {
+    setColor() {
       return this.projectStatus === 'Идея' ? 'green' : (this.projectStatus === 'Прототип' ? 'blue' : (this.projectStatus === 'Продукт' ? 'orange' : 'black'))
     }
   },
@@ -38,18 +39,24 @@ export default {
 
 <style>
 .card {
-    width: 95%;
-    margin: 0 auto;
-    height: 50px;
-    display: flex;
-    padding: 0 15px;
-    border-radius: 3px 0 0;
+  width: 95%;
+  margin: 0 auto;
+  height: 50px;
+  display: flex;
+  padding: 0 15px;
+  border-radius: 3px 0 0;
 }
 
 .card:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
   border-bottom: 2px solid #009A96;
   cursor: pointer;
+}
+
+.header {
+  pointer-events: none;
+  opacity: 0.6;
+  border-bottom: 2px solid #009A96;
 }
 
 p {
@@ -97,6 +104,6 @@ div {
 }
 
 .responsible {
-  width:44%;
+  width: 44%;
 }
 </style>
