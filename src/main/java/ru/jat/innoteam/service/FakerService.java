@@ -1,17 +1,19 @@
 package ru.jat.innoteam.service;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import ru.jat.innoteam.model.*;
 import ru.jat.innoteam.repository.ApplicationRepository;
 import ru.jat.innoteam.repository.IssueRepository;
+import ru.jat.innoteam.util.PhraseUtil;
 
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,6 +27,7 @@ public class FakerService {
 
     private final ApplicationRepository applicationRepository;
     private final IssueRepository issueRepository;
+    private final RestTemplate restTemplate;
 
     private static final Faker FAKER = new Faker(new Locale("ru"));
     private static final Random RANDOM = new Random();
@@ -39,6 +42,7 @@ public class FakerService {
      */
     @EventListener(ApplicationReadyEvent.class)
     public void generateFakeData() {
+        applicationRepository.deleteAll();
         //Если заявок нет, то наполним
         if (applicationRepository.count() == 0) {
             log.info("Наполним данными эластик");
@@ -74,12 +78,18 @@ public class FakerService {
      * @return
      */
     public Application getApplication(Long id) {
-        var productName = FAKER.commerce().productName();
+        var productDescription = PhraseUtil.getPhrase();
+        String tags = restTemplate.postForObject("/predict/gettags", Map.of("text", productDescription), String.class);
+        List<String> tagList = Collections.emptyList();
+        if (tags != null) {
+            tagList = Arrays.asList(tags.split(" "));
+        }
+
         return Application.builder()
                 .id(id)
                 .teamName(FAKER.team().name())
                 .stage(ReadinessStage.values()[RANDOM.nextInt(ReadinessStage.values().length)])
-                .productDescription(productName)
+                .productDescription(productDescription)
                 .productUseCases(FAKER.commerce().material())
                 .productBenefits(FAKER.commerce().price())
                 .organization(Organization.values()[RANDOM.nextInt(ReadinessStage.values().length)])
@@ -102,7 +112,7 @@ public class FakerService {
                         .projectManager(FAKER.name().fullName())
                         .programCoordinator(FAKER.name().fullName())
                         .orgCoordinator(FAKER.name().fullName())
-                        .description(productName)
+                        .description(productDescription)
                         .term("Срок " + FAKER.date().birthday().toString())
                         .context("Городская среда в пробках")
                         .expectedProjectEffect(ExpectedProjectEffect.builder()
@@ -174,6 +184,7 @@ public class FakerService {
                                 .indicator(FAKER.number().digits(7))
                                 .build())
                         .build())
+                .tags(tagList)
                 .build();
     }
 

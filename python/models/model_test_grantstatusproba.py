@@ -24,7 +24,7 @@ MODEL = 'TEST_GRANTSTATUSPROBA'
 # ======== настройки из CONFIG.ini ========
 
 CONFIG = configparser.ConfigParser()  # создаeм объект парсера
-CONFIG.read('CONFIG.ini')  # читаем конфиг
+CONFIG.read('CONFIG.INI')  # читаем конфиг
 TEST_GRANTSTATUSPROBA = dict(CONFIG[MODEL])
 
 # путь к данным модели

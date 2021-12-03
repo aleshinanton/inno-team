@@ -7,6 +7,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.util.List;
+
 /**
  * Форма заявки для стартапа
  */
@@ -108,4 +110,8 @@ public class Application {
      */
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     private Project project;
+    /**
+     * Ключевые метки заявки
+     */
+    private List<String> tags;
 }
