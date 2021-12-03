@@ -5,6 +5,7 @@ services:
     build: frontend
     environment:
       VUE_APP_BACKEND_URL: http://inno-team-back:9090
+      VUE_APP_KEYCLOAK_URL: http://localhost:9000/auth
     ports:
       - "8080:8080"
     depends_on:

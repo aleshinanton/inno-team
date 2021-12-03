@@ -12,8 +12,10 @@
 <script>
 import ProjectCard from './ProjectCard.vue'
 import Pagination from './Pagination'
+import { $axios } from '@baloise/vue-axios'
+
 // import { getTestData } from '../services/test'
-import axios from 'axios'
+
 export default {
     components: {
         ProjectCard,
@@ -34,7 +36,7 @@ export default {
     },
     methods: {
         loadListItem () {
-            axios.get(`/api/application?page=${this.page}`)
+            $axios.get(`/api/application?page=${this.page}`)
                 .then(response => {
                 console.log('response', response)
                 this.listItems = response.data.content
