@@ -1,0 +1,13 @@
+{
+    "state_code": "FL",
+    "age_first_funding_year": 2.9,
+    "age_last_funding_year": 3.8,
+    "relationships": 2,
+    "funding_rounds": 2,
+    "funding_total_usd": 100,
+    "milestones": 4,
+    "has_VC": false,
+    "avg_participants": 7900000000,
+    "is_top500": false,
+    "status": null
+}
