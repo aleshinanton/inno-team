@@ -9,7 +9,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import javax.persistence.GeneratedValue;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -29,7 +28,6 @@ public class Issue {
      * Идентификатор запроса
      */
     @Id
-    @GeneratedValue
     private UUID uuid;
     /**
      * Что болит?
