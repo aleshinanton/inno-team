@@ -1,9 +1,11 @@
 package ru.jat.innoteam.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
+/**
+ * Ожидаемый эффект
+ */
 @Getter
 @Setter
 @ToString
@@ -11,14 +13,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonAutoDetect
-public class ProjectStage {
+public class ExpectedProjectEffect {
+    /**
+     * №
+     */
+    private String id;
     /**
      * Наименование
      */
-    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-    private Stage stage;
+    private String name;
     /**
-     * Ожидаемая дата завершения
+     * Значение показателя
      */
-    private String term;
+    private String indicator;
 }
