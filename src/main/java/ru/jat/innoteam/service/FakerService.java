@@ -71,7 +71,6 @@ public class FakerService {
                 .issueDescription(issueDescription)
                 .affect("Экономика теряет 1% ВВП ежегодно")
                 .cause("Плохо отлажено переключение дорожных контроллеров")
-                .initiator(FAKER.name().fullName())
                 .responsible(FAKER.name().fullName())
                 .resolveTerm("Решить до конца 2022 года")
                 .tryToResolve("Да. Пробовали изменять скорость потока.")
