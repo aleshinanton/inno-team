@@ -26,34 +26,6 @@ export default {
 </script>
 
 <style scoped>
-
-.avatar {
-  object-fit: cover;
-  border-radius: 50%;
-  width: 31px;
-  height: 41px;
-  background-color: #009A96;
-  margin-left: auto;
-  margin-right: 0;
-}
-
-.links {
-  display: flex;
-}
-
-a {
-  text-decoration: none;
-}
-
-h4 {
-  text-align: right !important;
-  float: left;
-  font-weight: 400;
-  margin-left: auto;
-  margin-right: 0;
-  align-items: flex-end;
-}
-
 h3 {
   text-align: left;
   padding: 0 15px;
@@ -69,6 +41,14 @@ h3 {
 
 .active h3, .active {
   color: #71837f;
+  text-decoration: none;
+}
+
+.links {
+  display: flex;
+}
+
+a {
   text-decoration: none;
 }
 </style>
