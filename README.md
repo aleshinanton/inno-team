@@ -28,6 +28,10 @@
 - Python 3.8 (numpy, pandas, scikit-learn, scipy)
 - docker-compose
 
+## Демо
+
+Демо сервиса доступно по адресу: https://youtu.be/pAYzY2VpxOk
+
 # СРЕДА ЗАПУСКА
 
 1. Развертывание сервиса производится на debian-like linux (debian 9+);
@@ -57,5 +61,7 @@ docker-compose up
 РАЗРАБОТЧИКИ
 
 Алешин Антон fullstack https://t.me/antonaleshin
+
 Фуфаев Михаил fullstack https://t.me/pulldakar
+
 Прудников Юрий data-scientist https://t.me/killtheciv
