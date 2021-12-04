@@ -69,7 +69,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .taskShowCase {
     margin-top: 20px;
 }

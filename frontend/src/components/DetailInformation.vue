@@ -9,8 +9,106 @@
         <div class="itemField"><span class="fieldName">Координатор от организации транспортного комплекса Москвы:</span> {{item.project.orgCoordinator}}</div>
         <div class="itemField"><span class="fieldName">Краткое описание продукта:</span> {{item.project.description}}</div>
         <div class="itemField"><span class="fieldName">Сроки реализации проекта:</span> {{item.project.term}}</div>
-        <div class="itemField"><span class="fieldName">Контекст и потребности:</span> {{item.project.context}}</div>
         <div class="itemField"><span class="fieldName">Tеги:</span><span v-for="item in item.tags" :key="item"><span class="tag">{{item}}</span></span></div>
+        <div class="context"><span class="contextName">Контекст и потребности:</span> <div class="contextData">{{item.project.context}}</div></div>
+
+
+        <p class="fieldName">Ожидаемые эффекты проекта</p>
+        <table>
+                <tr>
+                    <td class="numberField">№</td>
+                    <td class="nameField">Наименование</td>
+                    <td class="valueField">Значение показателя</td>
+                </tr>
+                <tr v-for="(row, index) in item.project.expectedProjectEffects" :key="row.id">
+                    <td>{{index + 1}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.indicator}}</td>
+                </tr>
+        </table>
+
+
+        <p class="fieldName">Этапы проекта</p>
+        <table>
+                <tr>
+                    <td class="numberField">№</td>
+                    <td class="nameField">Наименование</td>
+                    <td class="valueField">Ожидаемая дата завершения</td>
+                </tr>
+                <tr v-for="(row, index) in item.project.projectStages" :key="row.stage">
+                    <td>{{index + 1}}</td>
+                    <td>{{row.stage}}</td>
+                    <td>{{row.term}}</td>
+                </tr>
+        </table>
+
+        <p class="fieldName">Команда проекта</p>
+        <table>
+                <tr>
+                    <td class="numberField">№</td>
+                    <td>ФИО</td>
+                    <td>Должность/Организация</td>
+                    <td>Контакты</td>
+                </tr>
+                <tr v-for="(row, index) in item.project.projectMembers" :key="row.id">
+                    <td>{{index + 1}}</td>
+                    <td>{{row.fullName}}</td>
+                    <td>{{row.position}} / {{row.organization}}</td>
+                    <td>{{row.contact}}</td>
+                </tr>
+        </table>
+
+        <p class="fieldName">Бюджет проекта</p>
+        <table>
+                <tr>
+                    <td class="numberField">№</td>
+                    <td class="nameField">Наименование</td>
+                    <td class="valueField">Значение показателя</td>
+                </tr>
+                <tr v-for="(row, index) in item.project.expenseItems" :key="row.id">
+                    <td>{{index + 1}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.indicator}}</td>
+                </tr>
+        </table>
+
+        <p class="fieldName">Статус проекта</p>
+        <table>
+                <tr>
+                    <td>Статус</td>
+                    <td>Ожидаемые результаты и мероприятия</td>
+                    <td>Дата</td>
+                </tr>
+                <tr v-for="(row) in item.project.projectStatuses" :key="row.term">
+                    <td>{{row.status}}</td>
+                    <td>{{row.expectedResults}}</td>
+                    <td>{{row.term}}</td>
+                </tr>
+        </table>
+
+        <p class="fieldName">Собрания по проекту</p>
+        <table>
+                <tr>
+                    <td>Комментарий</td>
+                    <td>Дата</td>
+                </tr>
+                <tr v-for="(row) in item.project.projectMeetings" :key="row.comment">
+                    <td>{{row.comment}}</td>
+                    <td>{{row.date}}</td>
+                </tr>
+        </table>
+
+        <p class="fieldName">Материалы проекта</p>
+        <table>
+                <tr>
+                    <td>Наименование</td>
+                    <td>Ссылка</td>
+                </tr>
+                <tr v-for="(row) in item.project.projectMaterials" :key="row.url">
+                    <td>{{row.name}}</td>
+                    <td>{{row.url}}</td>
+                </tr>
+        </table>
     </div>
 </template>
 
@@ -38,7 +136,39 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+tr:first-child {
+    font-weight: 600;
+}
+
+td {
+    border: 1px solid #009A96;
+    padding: 10px;
+}
+
+.numberField {
+    width: 5%;
+}
+
+.nameField {
+    width: 60%;
+}
+
+.valueField {
+    width:60%;
+}
+
+caption {
+    text-align: left;
+}
+
 .breadcrumbs {
     color: #009A96;
 }
@@ -62,7 +192,7 @@ export default {
 }
 
 .itemField {
-    width: 80%;
+    width: 99%;
     border-bottom: 1px solid #d1d1d1;
     margin: 10px auto;
     padding-bottom: 8px;
@@ -75,5 +205,25 @@ export default {
     height: 100%;
     font-weight: 600;
     padding-right: 10px;
+}
+
+p.fieldName {
+    margin: 0;
+    margin-top: 25px;
+}
+
+.contextName {
+    display: inline-block;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.contextData {
+    border: 1px solid #009A96;
+    border-radius: 5px;
+    min-height: 80px;
+    padding: 5px;
 }
 </style>

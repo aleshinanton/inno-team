@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .card {
   width: 95%;
   margin: 0 auto;
