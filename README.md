@@ -42,9 +42,12 @@ git clone https://github.com/aleshinanton/inno-team.git
 ```
 cd inno-team
 ```
-3. Выполнить команду
+3. Выполнить команды
 ```
-docker-compose up --build
+docker-compose build python
+docker-compose build inno-team-back
+docker-compose build inno-team-front
+docker-compose up
 ```
 
 После выполнения команды начнет настраиваться и устанавливаться необходимая инфраструктура

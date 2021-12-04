@@ -88,7 +88,7 @@ services:
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:9200" ]
       interval: 30s
-      retries: 2
+      retries: 3
     restart: on-failure
   python:
     container_name: inno_team_python
