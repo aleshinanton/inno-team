@@ -34,6 +34,7 @@ public interface IssueRepository extends ElasticsearchRepository<Issue, UUID> {
             "        \"issueDescription\",\n" +
             "        \"affect\",\n" +
             "        \"cause\",\n" +
+            "        \"responsible\",\n" +
             "        \"tryToResolve\"\n" +
             "      ]\n" +
             "    }\n" +

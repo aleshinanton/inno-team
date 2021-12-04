@@ -4,9 +4,6 @@
       <div class="name">
         <p>{{ taskName }}</p>
       </div>
-      <div class="initiator">
-        <p>{{ initiator }}</p>
-      </div>
       <div class="responsible">
         <p>{{ responsible }}</p>
       </div>
@@ -80,18 +77,7 @@ p {
 
 a {
   color: black;
-}
-
-.green {
-  color: green;
-}
-
-.blue {
-  color: rgb(75, 75, 245);
-}
-
-.orange {
-  color: orange;
+  text-decoration: none;
 }
 
 div {
@@ -110,7 +96,7 @@ div {
 }
 
 .name {
-  width: 20%;
+  width: 34%;
   vertical-align: middle;
 }
 
@@ -132,18 +118,9 @@ div {
   margin: 4px 5px;
 }
 
-.initiator {
-  width: 22%;
-  vertical-align: middle;
-}
-
-.header .initiator {
-   padding-left: 0;
-   padding-right: 0;
-}
 
 .responsible {
-  width: 22%;
+  width: 30%;
 }
 .header .responsible {
    padding-left: 0;

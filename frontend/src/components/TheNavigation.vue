@@ -2,10 +2,7 @@
   <div class="links">
     <router-link to="/projects"><h3>Реестр решений</h3></router-link>
     <router-link to="/tasks"><h3 class="separator">Реестр задач</h3></router-link>
-    <div class="selected"><h4>{{ data }}</h4>
-      <div class="avatar"></div>
-    </div>
-    <button class="btn-primary" @click="logout()">Выход</button>
+
   </div>
 </template>
 

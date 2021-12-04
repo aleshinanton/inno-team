@@ -10,6 +10,68 @@
                 <p>{{item.issue}}</p>
             </div>
         </div>
+        <div class="itemField">
+            <div class="fieldName">
+                <p>Как проявляется ваша проблема?</p>
+                <p class="small">Приведите описание реальной ситуации, в которой проблема бы проявилась</p>
+            </div> 
+            <div class="projectDataValue">
+                <p>{{item.issueDescription}}</p>
+            </div>
+        </div>
+        <div class="itemField">
+            <div class="fieldName">
+                <p>Что будет если проблему не решать?</p>
+                <p class="small">Опишите нежелательные эффекты, которые возникают или могут возникнуть из-за того, что проблема не решается</p>
+            </div> 
+            <div class="projectDataValue">
+                <p>{{item.affect}}</p>
+            </div>
+        </div>
+        <div class="itemField">
+            <div class="fieldName">
+                <p>Почему так происходит?</p>
+                <p class="small">Какие на ваш взгляд ключевые причины возникновения проблемы? Что на ваш взгляд является причиной возникновения проблемы?</p>
+            </div> 
+            <div class="projectDataValue">
+                <p>{{item.cause}}</p>
+            </div>
+        </div>
+        <div class="itemField">
+            <div class="fieldName">
+                <p>У кого болит?</p>
+                <p class="small">Кто является непосредственно ответственным за проблемный участок?</p>
+            </div> 
+            <div class="projectDataValue">
+                <p>{{item.responsible}}</p>
+            </div>
+        </div>
+        <div class="itemField">
+            <div class="fieldName">
+                <p>Какой желательный срок решения проблемы?</p>
+            </div> 
+            <div class="projectDataValue">
+                <p>{{item.resolveTerm}}</p>
+            </div>
+        </div>
+        <div class="itemField">
+            <div class="fieldName">
+                <p>Пробовали решать?</p>
+                <p class="small">Как пытались решить проблему ранее? Почему эти попытки оказались неудачными или почему были признаны неудачными? Чем не устроили найденные решения? Общались ли с рынком? Если да, то с кем?</p>
+            </div> 
+            <div class="projectDataValue">
+                <p>{{item.tryToResolve}}</p>
+            </div>
+        </div>
+        <div class="itemField">
+            <div class="fieldName">
+                <p>Как с вами связаться?</p>
+                <p class="small">Укажите наименование вашего предприятия, ваши ФИО, и телефон для связи</p>
+            </div> 
+            <div class="projectDataValue">
+                <p>{{item.contact}}</p>
+            </div>
+        </div>
         <!-- <div class="itemField"><div class="fieldName">Организация транспортного комплекса Москвы:</div> <div class="projectDataValue">{{item.project.orgName}}</div></div>
         <div class="itemField"><div class="fieldName">Участник программы пилотирования «Транспортные инновации Москвы»:</div> <div class="projectDataValue">{{item.project.participant}}</div></div>
         <div class="itemField"><div class="fieldName">Руководитель проекта:</div> <div class="projectDataValue">{{item.project.projectManager}}</div></div>
@@ -78,13 +140,14 @@ export default {
 
 .fieldName {
     display: inline-block;
-    width: 50%;
+    width: 35%;
     height: 100%;
     font-weight: 600;
     padding-right: 10px;
 }
 .projectDataValue {
-    width: 50%;
+    width: 65%;
+    padding-left: 20px;
 }
 
 p.fieldName {

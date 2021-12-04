@@ -43,13 +43,17 @@ export default {
     },
     methods: {
         searchRequest() {
-            axios.get(`/api/application/search/fulltext?q=` + this.searchPhrase)
-                .then(response => {
-                console.log('responseS', response)
-                this.listItems = response.data.content
-                this.totalPages = response.data.totalPages
-                this.totalRecords = response.data.totalElements
-            })
+            if (this.searchPhrase) {
+                axios.get(`/api/application/search/fulltext?q=` + this.searchPhrase)
+                    .then(response => {
+                    console.log('responseS', response)
+                    this.listItems = response.data.content
+                    this.totalPages = response.data.totalPages
+                    this.totalRecords = response.data.totalElements
+                })
+            } else {
+                this.loadListItem()
+            }
         },
         loadListItem () {
             $axios.get(`/api/application?page=${this.page}&size=10`)
@@ -106,7 +110,7 @@ button[type="submit"] {
     background: inherit;
     cursor: pointer;
     border: none;
-    border-left: 2px solid #009A96;
+    border-radius: 5px;
     height: 30px;
     font-size: 16px;
     width: 20%;
