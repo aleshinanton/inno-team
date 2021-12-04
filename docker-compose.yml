@@ -48,10 +48,6 @@ services:
       - ./keycloak/themes/custom:/opt/jboss/keycloak/themes/custom/
     command:
       - -Djboss.http.port=9000
-      - -Dkeycloak.migration.strategy=IGNORE_EXISTING
-      - -Dkeycloak.migration.action=import
-      - -Dkeycloak.migration.provider=dir
-      - -Dkeycloak.migration.dir=/tmp/
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:9000/auth/" ]
       interval: 5s
