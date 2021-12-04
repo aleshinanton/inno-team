@@ -1,26 +1,29 @@
 <template>
-  <div class="card" v-bind:class="{ header: header }">
-    <div class="name">
-      <p>{{ taskName }}</p>
+  <router-link v-bind:class="{ header: header }" :to="taskLink">
+    <div class="card" v-bind:class="{ header: header }">
+      <div class="name">
+        <p>{{ taskName }}</p>
+      </div>
+      <div class="initiator">
+        <p>{{ initiator }}</p>
+      </div>
+      <div class="responsible">
+        <p>{{ responsible }}</p>
+      </div>
+      <div class="tags" v-if="!header">
+        <span v-for="item in tags" :key="item" class="tag">{{item}}</span>
+      </div>
+      <div class="arrow" v-if="!header">
+        <p>&#5171;</p>
+      </div>
     </div>
-    <div class="initiator">
-      <p>{{ initiator }}</p>
-    </div>
-    <div class="responsible">
-      <p>{{ responsible }}</p>
-    </div>
-    <div class="tags">
-      <span v-for="item in tags" :key="item"><span v-if="!header" class="tag">{{item}}</span></span>
-    </div>
-    <div class="arrow">
-      <p v-if="!header">&#5171;</p>
-    </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   props: [
+    'taskId',
     'taskName',
     'responsible',
     'initiator',
@@ -38,8 +41,8 @@ export default {
     }
   },
   computed: {
-    projectLink() {
-      return '/projects/' + this.projectId;
+    taskLink() {
+      return '/tasks/' + this.taskId;
     }
   }
 }
@@ -49,7 +52,7 @@ export default {
 .card {
   width: 95%;
   margin: 0 auto;
-  height: 50px;
+  height: 60px;
   display: flex;
   padding: 0 15px;
   border-radius: 3px 0 0;
@@ -69,7 +72,7 @@ export default {
 
 p {
   text-align: left;
-  padding: 0 5px;
+  padding: 4px 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -103,12 +106,16 @@ div {
 
 .arrow p {
   text-align: right;
-  margin: 13px 0;
+  margin: 18px 0;
 }
 
 .name {
   width: 20%;
   vertical-align: middle;
+}
+
+.header .name {
+   padding-right: 0;
 }
 
 .tags {
@@ -117,11 +124,12 @@ div {
 }
 
 .tag {
+  display: inline-block;
   background-color: #009A96;
-  padding: 2px 10px;
+  padding: 1px 10px;
   color: #fff;
   border-radius: 10px;
-  margin-left: 10px;
+  margin: 4px 5px;
 }
 
 .initiator {
@@ -129,7 +137,15 @@ div {
   vertical-align: middle;
 }
 
+.header .initiator {
+   padding-left: 0;
+   padding-right: 0;
+}
+
 .responsible {
   width: 22%;
+}
+.header .responsible {
+   padding-left: 0;
 }
 </style>

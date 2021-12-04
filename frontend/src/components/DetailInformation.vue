@@ -1,14 +1,14 @@
 <template>
     <div class="project">
         <p class="breadcrumbs"><a href="/projects">Реестр решений</a> &#8594; {{projectId}}</p>
-        <div class="itemField"><span class="fieldName">Наименование проекта:</span> {{item.project.name}}</div>
-        <div class="itemField"><span class="fieldName">Организация транспортного комплекса Москвы:</span> {{item.project.orgName}}</div>
-        <div class="itemField"><span class="fieldName">Участник программы пилотирования «Транспортные инновации Москвы»:</span> {{item.project.participant}}</div>
-        <div class="itemField"><span class="fieldName">Руководитель проекта:</span> {{item.project.projectManager}}</div>
-        <div class="itemField"><span class="fieldName">Координатор от участника программы пилотирования «Транспортные инновации Москвы»:</span> {{item.project.programCoordinator}}</div>
-        <div class="itemField"><span class="fieldName">Координатор от организации транспортного комплекса Москвы:</span> {{item.project.orgCoordinator}}</div>
-        <div class="itemField"><span class="fieldName">Краткое описание продукта:</span> {{item.project.description}}</div>
-        <div class="itemField"><span class="fieldName">Сроки реализации проекта:</span> {{item.project.term}}</div>
+        <div class="itemField"><div class="fieldName">Наименование проекта:</div> <div class="projectDataValue">{{item.project.name}}</div></div>
+        <div class="itemField"><div class="fieldName">Организация транспортного комплекса Москвы:</div> <div class="projectDataValue">{{item.project.orgName}}</div></div>
+        <div class="itemField"><div class="fieldName">Участник программы пилотирования «Транспортные инновации Москвы»:</div> <div class="projectDataValue">{{item.project.participant}}</div></div>
+        <div class="itemField"><div class="fieldName">Руководитель проекта:</div> <div class="projectDataValue">{{item.project.projectManager}}</div></div>
+        <div class="itemField"><div class="fieldName">Координатор от участника программы пилотирования «Транспортные инновации Москвы»:</div> <div class="projectDataValue">{{item.project.programCoordinator}}</div></div>
+        <div class="itemField"><div class="fieldName">Координатор от организации транспортного комплекса Москвы:</div> <div class="projectDataValue">{{item.project.orgCoordinator}}</div></div>
+        <div class="itemField"><div class="fieldName">Краткое описание продукта:</div> <div class="projectDataValue">{{item.project.description}}</div></div>
+        <div class="itemField"><div class="fieldName">Сроки реализации проекта:</div> <div class="projectDataValue">{{item.project.term}}</div></div>
         <div class="itemField"><span class="fieldName">Tеги:</span><span v-for="item in item.tags" :key="item"><span class="tag">{{item}}</span></span></div>
         <div class="context"><span class="contextName">Контекст и потребности:</span> <div class="contextData">{{item.project.context}}</div></div>
 
@@ -197,6 +197,7 @@ caption {
     margin: 10px auto;
     padding-bottom: 8px;
     font-size: 15px;
+    display: flex;
 }
 
 .fieldName {
@@ -205,6 +206,9 @@ caption {
     height: 100%;
     font-weight: 600;
     padding-right: 10px;
+}
+.projectDataValue {
+    width: 50%;
 }
 
 p.fieldName {

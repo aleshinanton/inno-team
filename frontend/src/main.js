@@ -3,7 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue'
 import ShowCase from './components/Showcase.vue'
 import TasksShowcase from './components/TasksShowcase.vue'
-import DetaolInformation from './components/DetailInformation.vue'
+import DetailInformation from './components/DetailInformation.vue'
+import DetailTask from './components/DetailTask.vue'
 import { $axios } from '@baloise/vue-axios'
 import { vueKeycloak } from '@baloise/vue-keycloak'
 import { getToken } from '@baloise/vue-keycloak'
@@ -15,7 +16,8 @@ const router = createRouter({
       { path: '/', redirect: '/projects' },
       { path: '/projects', component: ShowCase },
       { path: '/tasks', component: TasksShowcase },
-      { path: '/projects/:projectId', component: DetaolInformation, props: true },
+      { path: '/projects/:projectId', component: DetailInformation, props: true },
+      { path: '/tasks/:taskId', component: DetailTask, props: true },
     ],
     linkActiveClass: 'active'
 });

@@ -52,9 +52,6 @@ public class Issue {
     private String cause;
     /**
      * У кого болит?
-     */
-    private String initiator;
-    /**
      * Кто является непосредственно ответственным за проблемный участок?
      */
     private String responsible;

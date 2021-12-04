@@ -79,6 +79,7 @@ p {
 
 a {
   color: black;
+  text-decoration: none;
 }
 
 .green {
@@ -109,7 +110,7 @@ div {
 }
 
 .name {
-  width: 25%;
+  width: 41%;
   vertical-align: middle;
 }
 
@@ -119,11 +120,11 @@ div {
 }
 
 .status {
-  width: 20%;
+  width: 15%;
   vertical-align: middle;
 }
 
 .organisation {
-  width: 41%;
+  width: 30%;
 }
 </style>
