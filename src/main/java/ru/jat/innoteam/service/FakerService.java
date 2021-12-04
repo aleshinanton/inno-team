@@ -59,13 +59,25 @@ public class FakerService {
         }
     }
 
-    public Issue getIssue() {
-        var issueDescription = RandomUtil.getPhrase();
-        var tags = restTemplate.postForObject("/predict/gettags", Map.of("text", issueDescription), String.class);
+    /**
+     * Метод получения разметки текста тегами
+     * из интеллектуального модуля
+     *
+     * @param string текст для разметки
+     * @return облако тегов
+     */
+    public List<String> getTags(String string) {
+        var tags = restTemplate.postForObject("/predict/gettags", Map.of("text", string), String.class);
         List<String> tagList = Collections.emptyList();
         if (tags != null) {
             tagList = Arrays.asList(tags.split(" "));
         }
+        return tagList;
+    }
+
+    public Issue getIssue() {
+        var issueDescription = RandomUtil.getPhrase();
+        var tags = getTags(issueDescription);
         return Issue.builder()
                 .issue("Пробки на дорогах")
                 .issueDescription(issueDescription)
@@ -75,7 +87,7 @@ public class FakerService {
                 .resolveTerm("Решить до конца 2022 года")
                 .tryToResolve("Да. Пробовали изменять скорость потока.")
                 .contact(FAKER.phoneNumber().cellPhone() + " " + FAKER.name().fullName())
-                .tags(tagList)
+                .tags(tags)
                 .build();
     }
 
@@ -87,12 +99,7 @@ public class FakerService {
      */
     public Application getApplication(Long id) {
         var productDescription = RandomUtil.getPhrase();
-        String tags = restTemplate.postForObject("/predict/gettags", Map.of("text", productDescription), String.class);
-        List<String> tagList = Collections.emptyList();
-        if (tags != null) {
-            tagList = Arrays.asList(tags.split(" "));
-        }
-
+        var tags = getTags(productDescription);
         return Application.builder()
                 .id(id)
                 .teamName(FAKER.team().name())
@@ -224,7 +231,7 @@ public class FakerService {
                                 .url(FAKER.internet().url())
                                 .build())
                         .build())
-                .tags(tagList)
+                .tags(tags)
                 .build();
     }
 
