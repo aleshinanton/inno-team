@@ -5,6 +5,7 @@
     <div class="selected"><h4>{{ data }}</h4>
       <div class="avatar"></div>
     </div>
+    <button class="btn-primary" @click="logout()">Выход</button>
   </div>
 </template>
 
@@ -13,6 +14,11 @@ export default {
   data() {
     return {
       data: ""
+    }
+  },
+  methods: {
+    logout() {
+      this.$keycloak.logout();
     }
   },
   mounted() {
