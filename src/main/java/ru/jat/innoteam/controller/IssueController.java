@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.jat.innoteam.model.Application;
 import ru.jat.innoteam.model.Issue;
 import ru.jat.innoteam.repository.IssueRepository;
+import ru.jat.innoteam.service.FakerService;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
@@ -24,6 +25,7 @@ import java.util.UUID;
 public class IssueController {
 
     private final IssueRepository issueRepository;
+    private final FakerService fakerService;
 
     @GetMapping
     public Page<Issue> getIssues(@NotNull @ParameterObject Pageable pageable) {
@@ -37,6 +39,9 @@ public class IssueController {
 
     @PostMapping
     public Issue saveIssue(@RequestBody Issue issue) {
+        if (issue.getTags() == null || issue.getTags().isEmpty()) {
+            issue.setTags(fakerService.getTags(issue.getIssueDescription()));
+        }
         return issueRepository.save(issue);
     }
 
