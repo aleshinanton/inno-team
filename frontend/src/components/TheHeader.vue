@@ -3,7 +3,7 @@
     <h1>Витрина транспортных инноваций</h1>
     <img class="logo" src="@/assets/tim.svg" alt="Транспортные инновации Москвы">
     <div class="flex">
-      <h4>Иванов Иван</h4>
+      <h4>Best Customer</h4>
       <div class="avatar"></div>
       <button @click="logout()">Выход</button>
     </div>

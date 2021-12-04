@@ -54,7 +54,7 @@ export default {
             }
         },
         loadListItem () {
-            axios.get(`/api/issue?page=${this.page}&size=10`)
+            axios.get(`/api/issue?page=${this.page}`)
                 .then(response => {
                 console.log('response', response)
                 this.listItems = response.data.content
