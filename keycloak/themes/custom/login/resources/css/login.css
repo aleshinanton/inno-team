@@ -1,3 +1,9 @@
+:root {
+    --pf-global--primary-color--100: #009a96ff;
+    --pf-c-button--m-primary--BackgroundColor: #009a96ff;
+    --pf-global--primary-color--100: #009a96ff;
+}
+
 .login-pf body {
     background: url("../img/keycloak-bg.png") no-repeat center center fixed;
     background-size: cover;
@@ -125,20 +131,20 @@
     padding: var(--pf-c-alert__title--PaddingTop) var(--pf-c-alert__title--PaddingRight) var(--pf-c-alert__title--PaddingBottom) var(--pf-c-alert__title--PaddingLeft);
 }
 
-.pf-c-button{
-    padding:0.375rem 1rem;
+.pf-c-button {
+    padding: 0.375rem 1rem;
     padding: var(--pf-global--spacer--form-element) var(--pf-global--spacer--md);
 }
 
 /* default - IE compatibility */
 .pf-m-primary {
     color: #FFFFFF;
-    background-color: #009a96ff;
+    background-color: #009a96ff !important;
 }
 
-.pf-c-button.pf-m-primary{
+.pf-c-button.pf-m-primary {
     color: #FFFFFF;
-    background-color: #009a96ff;
+    background-color: #009a96ff !important;
 }
 
 /* default - IE compatibility */
@@ -153,6 +159,7 @@
     border: solid var(--pf-global--BorderWidth--sm);
     border-color: rgba(230, 230, 230, 0.5);
 }
+
 /*End of IE compatibility*/
 h1#kc-page-title {
     margin-top: 10px;
@@ -247,7 +254,7 @@ div.kc-logo-text span {
 
 #kc-username {
     text-align: center;
-    margin-bottom:-10px;
+    margin-bottom: -10px;
 }
 
 #kc-webauthn-settings-form {
@@ -312,8 +319,8 @@ ul#kc-totp-supported-apps {
 }
 
 #kc-totp-secret-qr-code {
-    max-width:150px;
-    max-height:150px;
+    max-width: 150px;
+    max-height: 150px;
 }
 
 #kc-totp-secret-key {
@@ -390,7 +397,7 @@ ul#kc-totp-supported-apps {
 }
 
 .kc-social-grid {
-    display:grid;
+    display: grid;
     grid-column-gap: 10px;
     grid-row-gap: 5px;
     grid-column-end: span 6;
@@ -410,32 +417,32 @@ ul#kc-totp-supported-apps {
     text-align: center;
 }
 
-.kc-social-section hr{
+.kc-social-section hr {
     margin-bottom: 10px
 }
 
-.kc-login-tooltip .kc-tooltip-text{
-    top:-3px;
-    left:160%;
+.kc-login-tooltip .kc-tooltip-text {
+    top: -3px;
+    left: 160%;
     background-color: black;
     visibility: hidden;
     color: #fff;
 
-    min-width:130px;
+    min-width: 130px;
     text-align: center;
     border-radius: 2px;
-    box-shadow:0 1px 8px rgba(0,0,0,0.6);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
     padding: 5px;
 
     position: absolute;
-    opacity:0;
-    transition:opacity 0.5s;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
 
 /* Show tooltip */
 .kc-login-tooltip:hover .kc-tooltip-text {
     visibility: visible;
-    opacity:0.7;
+    opacity: 0.7;
 }
 
 /* Arrow for tooltip */
@@ -579,15 +586,16 @@ ul#kc-totp-supported-apps {
         flex-basis: 100%;
     }
 }
+
 /* End of IE11 workaround for select-authenticator screen */
 
-.select-auth-box-arrow{
+.select-auth-box-arrow {
     display: flex;
     align-items: center;
     margin-right: 2rem;
 }
 
-.select-auth-box-icon{
+.select-auth-box-icon {
     display: flex;
     flex: 0 0 2em;
     justify-content: center;
@@ -595,14 +603,14 @@ ul#kc-totp-supported-apps {
     margin-left: 3rem;
 }
 
-.select-auth-box-parent{
+.select-auth-box-parent {
     border-top: 1px solid var(--pf-global--palette--black-200);
     padding-top: 1rem;
     padding-bottom: 1rem;
     cursor: pointer;
 }
 
-.select-auth-box-parent:hover{
+.select-auth-box-parent:hover {
     background-color: #f7f8f8;
 }
 
@@ -626,7 +634,7 @@ ul#kc-totp-supported-apps {
     padding: 0 20px;
     max-width: 500px;
     border-top: 4px solid;
-    border-color: #009a96ff; /* default - IE compatibility */
+    border-color: #009a96ff !important; /* default - IE compatibility */
 }
 
 /*phone*/
@@ -654,6 +662,7 @@ ul#kc-totp-supported-apps {
     font-size: 15px;
     color: #72767b;
 }
+
 #kc-content-wrapper .row {
     margin-left: 0;
     margin-right: 0;
